@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width,intial-scale=1.0">
+        <style>
+            .number{
+                padding: 4.91vw;
+            }
+            .left_div{
+                float : left;
+                width : 55%;
+                height: 70%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                text-align: center;
+                color: #FFFFFF;
+                font-size: 35px;
+            }
+            .right_div{
+                float : right;
+                width : 35%;
+                height: 70%;
+            }
+            .button{
+                padding-top: 30px;
+            }
+            .button_1{
+                border-radius: 10;
+                border-radius: 4px;
+                padding:    30px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                background-color: #72C3DC;
+                color: #FFFFFF;
+            }
+            .button_2{
+                padding: 38px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                margin-top: -8px;
+                border-radius: 4px;
+                background-color: #72C3DC;
+                color: #FFFFFF;
+            }
+            body{
+                background-color: #EFEFEF;
+            }
+            @media screen and (max-width: 375px){  
+            body{
+                background-color: #FFFFFF;
+            }          
+            #Container{
+                display: flex;
+                flex-direction: column;
+            }
+            .left_div{
+                display: block;
+                order: 2;
+                width: 100%;
+                color: black;
+            }
+             .right_div{
+                 order: 1;
+                 width: 100%;
+                 padding-bottom: 10px;
+             }
+            .button{
+                width: 50%;
+                float: left;
+            }
+            .button_1{
+                margin-top: -8px;
+            }
+            .number{
+                margin-bottom: 1px;
+            }
+            }
+        </style>
+    </head>
+    <body>
+        <table width="100%">
+            <tr>
+                <td>
+                    <div id="Container">
+                        <div class="left_div">
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                          <div class="number"></div>
+                        </div>
+                        <div class=right_div>
+                            <div class="button">
+                              <button class="button_1" onclick="shuffle()">Shuffle</button>
+                            </div>
+                           <div class="button">
+                              <button class="button_2" onclick="sort()">Sort</button>
+                           </div>
+                        </div>          
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div id="footer">
+                        <span>Shuffle and sort by Abhinn Bansal</span>
+                    </div>
+                </td>
+            </tr>
+        </table>      
+    </body>
+    <script>
+    var arr = [];
+    var clr = ["#6F98A8", "#2B8EAD" , "#2F454E", "#2B8EAD", "#2F454E", "#BFBFBF",
+               "#BFBFBF", "#6F98A8", "#2F454E"]
+    sort();
+    function sort(){
+        arr = [1,2,3,4,5,6,7,8,9];
+        mediaQuery();
+    }
+    function shuffle(){
+        arr.sort(() => Math.random() - 0.5);
+        mediaQuery();
+    }
+    function printArray(border){
+        var divs = document.getElementsByClassName("number");
+        for(var i=0; i<9; i++){
+          var arr_val = arr[i]
+          divs[i].innerHTML = arr_val;
+          var color = clr[arr_val - 1];
+         if(border){
+            divs[i].style.borderLeft = "5px solid " + color;
+            divs[i].style.backgroundColor = "#EFEFEF";
+         }else{
+            divs[i].style.borderLeft = "0px solid " + color;
+            divs[i].style.backgroundColor = clr[arr_val - 1];
+         } 
+        }
+    }
+   window.addEventListener('resize',mediaQuery);
+
+   function mediaQuery(){
+       
+    if(window.innerWidth > 375){
+        printArray(false);
+    }else{
+      printArray(true);
+    }
+   }
+    
+    </script>
+</html>
